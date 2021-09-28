@@ -1,1 +1,23 @@
+<h1><%= @post.title %></h1>
 
+<h3><%= @post.content %></h3>
+
+<% if @post.categories %>
+  <% @post.categories.each do |cat| %>
+    <%= cat.name %>
+  <% end %>
+<% end %>
+
+<ul>Comments
+  <% @post.comments.each do |comment| %>
+    <li><%= comment.content %></li>
+  <% end %>
+</ul>
+
+<ul>Users
+  <% @post.users.uniq.each do |user| %>
+    <%= link_to user.username, user_path(user) %>
+  <% end %>
+</ul>
+
+<%= render "show" %>

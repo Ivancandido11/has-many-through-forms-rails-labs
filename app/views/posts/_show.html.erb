@@ -1,0 +1,15 @@
+<%= form_for @comment do |form| %>
+  <%= form.label :select_user %>
+  <%= form.collection_select :user_id, User.all, :id, :username, { include_blank: 'Select a user' } %>
+
+  <%= form.fields_for :user, @comment.build_user do |user_fields| %>
+    <%= user_fields.label :username %>
+    <%= user_fields.text_field :username %>
+  <% end %><br>
+
+  <%= form.hidden_field :post_id, value: @post.id %>
+  <%= form.label :comment_content %>
+  <%= form.text_field :content %>
+
+  <%= form.submit %>
+<% end %>
