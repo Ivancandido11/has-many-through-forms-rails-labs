@@ -16,7 +16,12 @@
 
 <ul>Users
   <% @post.users.uniq.each do |user| %>
-    <%= link_to user.username, user_path(user) %>
+    <li>
+      <%= link_to user.username, user_path(user) %> says: 
+      <% user.comments.each do |comment| %>
+        <li><%= comment.content %></li>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 
